@@ -16,9 +16,7 @@ import { NavbarComponent } from './navbar.component';
     <app-search-bar></app-search-bar>
     <div class="topbar">
       <div class="title">Daily Workload Dashboard</div>
-      <div class="controls">
-        <input type="date" [(ngModel)]="selectedDate" (change)="load()" />
-      </div>
+      
     </div>
 
     <div class="grid">

@@ -7,10 +7,10 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const pool = mysql.createPool({
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || '',
-  database: process.env.DB_NAME || 'test_db',
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
@@ -78,18 +78,20 @@ async function seedFromCsv(csvPath) {
     }
     rows.push(obj);
   }
-
+  // console.log(rows)
   console.log(`Parsed ${rows.length} rows`);
 
   const conn = await pool.getConnection();
   try {
     await conn.beginTransaction();
     await conn.query('DELETE FROM registration_status_history');
-
+    
     const insertSql = `INSERT INTO registration_status_history (REGISTRATION_STATUS_ID, REGISTRATION_ID, STATUS, DATE_CREATED) VALUES (?, ?, ?, ?)`;
 
     for (const r of rows) {
       const date = parseDate(r.DATE_CREATED);
+      console.log(date)
+      console.log([r.REGISTRATION_STATUS_ID || null, r.REGISTRATION_ID || null, r.STATUS || null, date])
       await conn.query(insertSql, [r.REGISTRATION_STATUS_ID || null, r.REGISTRATION_ID || null, r.STATUS || null, date]);
     }
 
@@ -116,7 +118,7 @@ async function main() {
   await pool.end();
 }
 
-main().catch(err => {
+main().catch(err => { 
   console.error(err && err.stack ? err.stack : err);
   process.exit(1);
 });

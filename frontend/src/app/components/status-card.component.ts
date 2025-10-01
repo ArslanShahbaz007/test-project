@@ -225,10 +225,6 @@ import { CommonModule } from '@angular/common';
     `.card.on-hold {
       background: #EC1C24; /* Red background for On Hold status */
       color: white; /* White text for better contrast */
-    }
-
-    .card.on-hold .status, .card.on-hold .count, .card.on-hold .additional-info {
-      color: white; /* Ensure all text elements are white */
     }`
   ]
 })
