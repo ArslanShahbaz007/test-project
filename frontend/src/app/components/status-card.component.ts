@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="card" [style.borderTopColor]="color" #cardElement>
+    <div class="card" [ngClass]="cardClass" [style.borderTopColor]="color" #cardElement>
       <div class="card-background" [style]="gradientStyle"></div>
       <div class="card-content">
         <div class="icon">{{ icon }}</div>
@@ -219,6 +219,16 @@ import { CommonModule } from '@angular/common';
     `.card:active {
       transform: translateY(-4px) scale(1.01);
       transition: transform 0.1s ease;
+    }`,
+
+    /* On Hold status specific styles */
+    `.card.on-hold {
+      background: #EC1C24; /* Red background for On Hold status */
+      color: white; /* White text for better contrast */
+    }
+
+    .card.on-hold .status, .card.on-hold .count, .card.on-hold .additional-info {
+      color: white; /* Ensure all text elements are white */
     }`
   ]
 })
@@ -267,5 +277,11 @@ export class StatusCardComponent {
       case 'down': return '↘';
       default: return '→';
     }
+  }
+
+  get cardClass() {
+    return {
+      'on-hold': this.status.toLowerCase().includes('on hold')
+    };
   }
 }

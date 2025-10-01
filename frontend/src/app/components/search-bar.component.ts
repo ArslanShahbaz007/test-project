@@ -30,15 +30,7 @@ import { FormsModule } from '@angular/forms';
           </button>
         </div>
         
-        <div class="search-filters">
-          <select class="filter-select" [(ngModel)]="selectedFilter" (change)="onFilterChange()">
-            <option value="all">All Status</option>
-            <option value="ttg">TTG</option>
-            <option value="on-hold">On Hold</option>
-            <option value="documents">Documents</option>
-            <option value="post">Post</option>
-          </select>
-        </div>
+        
       </div>
     </div>
   `,
@@ -52,6 +44,8 @@ import { FormsModule } from '@angular/forms';
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       border: 1px solid #334155; /* Same border as sidebar */
       color: #e2e8f0; /* Same text color as sidebar */
+      margin-right: 1rem;
+      margin-left: 1rem
     }
 
     .search-header h2 {

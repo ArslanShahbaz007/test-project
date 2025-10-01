@@ -30,9 +30,9 @@ import { NavbarComponent } from './navbar.component';
  // In your dashboard.component.ts
 styles: [
     
-  `:host {  margin: 0;   /* remove top/left browser defaults */
+  `:host {  margin-left: 0;   /* remove top/left browser defaults */
   padding: 0; font-family:Inter, system-ui, sans-serif }`,
-  `.topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:18px }`,
+  `.topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; margin-left: 1rem; margin-right: 1rem; }`,
   `.title { font-size:20px; font-weight:700 }`,
   `.controls input { padding:8px 10px; border-radius:6px; border:1px solid #ddd }`,
   `.grid { 
@@ -40,6 +40,8 @@ styles: [
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
     gap: 20px; 
     align-items: stretch; /* Add this */
+    margin-left: 1rem;
+    margin-right: 1rem;
   }`
 ]
 })
